@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FlyRepository extends JpaRepository<Fly, Long>{
-    Fly findFlyByMaximumFuel(int maximumFuel);
+  //  Fly findFlyByMaximumFuel(int maximumFuel);
 }

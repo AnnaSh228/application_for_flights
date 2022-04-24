@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FlightRepository extends JpaRepository<Flight, Long> {
-    List <Flight> findAllByUserId(long id);
-    void deleteFlightById(long id);
+   // List<Flight> findAllByOrderByCreatedDateDesc();
+    Flight findFlightById(Long id);
+    void deleteFlightById(Long id);
     
 }

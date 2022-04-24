@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html 
+  xmlns:th="https://thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+  <meta charset="utf-8">
+  <title>Регистрация</title>
+</head>
+
+<body>
+  <div>
+    <h1>Niggerегистрация</h1>
+    <form th:method="POST" th:action="@{/user/signin}" th:object="${userDto}">
+        <div class="login_form_input">
+          <input type ="text" th::field="*{name}" placeholder="Введите имя" required="" autocomplete="off">
+        </div>
+        <div class="login_form_input">
+          <input type ="text" th::field="*{lastname}" placeholder="Введите фамилию" required="" autocomplete="off">
+        </div>
+        <div class="login_form_input">
+          <input type ="text" th::field="*{user}" placeholder="Введите имя пользователя" required="" autocomplete="off">
+        </div>
+        <div class="login_form_input">
+          <input type ="email" th::field="*{email}" placeholder="Введите E-mail" required="" autocomplete="off">
+        </div>
+        <div class="login_form_input">
+          <input type ="phoneNumber" th::field="*{phoneNumber}" placeholder="Введите номер телефона" required="" autocomplete="off">
+        </div>
+        <div class="login_form_input">
+          <input type ="password" th::field="*{password}" placeholder="Введите пароль" required="" autocomplete="off">
+        </div>
+        <div class="login_form_input">
+          <input type ="password"  placeholder="Подтвердите пароль" required="" autocomplete="off">
+        </div>
+
+        <input type ="submit">Зарехаться</input>
+        
+    </form>
+    <a href="/">Главная</a>
+  </div>
+</body>
+
+</html>
