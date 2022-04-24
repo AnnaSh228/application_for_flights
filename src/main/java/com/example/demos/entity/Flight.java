@@ -33,8 +33,18 @@ public class Flight {
     private String arrivalAirport;
 
   
-
+public Flight(String flyNumber, boolean flightCancellation, float ticketPrice, float flightDuration, float distanceInKm,String departureAirport,String arrivalAirport){
+    this.flyNumber=flyNumber;
+    this.flightCancellation=flightCancellation;
+    this.ticketPrice=ticketPrice;
+    this.flightDuration=flightDuration;
+    this.distanceInKm=distanceInKm;
+    this.departureAirport=departureAirport;
+    this.arrivalAirport=arrivalAirport;
+}
     
+    
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime departureDate;
 

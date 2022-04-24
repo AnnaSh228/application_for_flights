@@ -21,7 +21,7 @@ public class FlyService {
         Fly newFly=new Fly();
         newFly.setMaximumFuel(dto.maximumFuel);
         newFly.setFuelConsumption(dto.fuelConsumption);
-        return flyRepository.save(newFly);
+        return newFly;
 }
     
 }

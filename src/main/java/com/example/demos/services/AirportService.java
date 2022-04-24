@@ -19,7 +19,7 @@ public class AirportService {
         Airport newAirport=new Airport();
         newAirport.setCountry(dto.country);
         newAirport.setName(dto.name);
-        return airportRepository.save(newAirport);
+        return newAirport;
 }
     
 }
