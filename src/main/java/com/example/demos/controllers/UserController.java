@@ -1,5 +1,7 @@
 package com.example.demos.controllers;
 
+
+
 import com.example.demos.dto.UserDto;
 import com.example.demos.services.UserService;
 
@@ -17,7 +19,7 @@ import org.slf4j.LoggerFactory;
 public class UserController {
     public static final Logger LOG = LoggerFactory.getLogger(UserService.class);
     @Autowired
-    UserService userService;
+    private UserService userService;
 
 
     @GetMapping("/signin")
@@ -39,9 +41,9 @@ public class UserController {
 
     @PostMapping("/signup")
     public String signUp(UserDto userDto, Model model){
-        LOG.info("Post signin {}", userDto.username);
+        LOG.info("<<<!!!>>> Post signin {}", userDto.username);
         userService.createUser(userDto);
-        return "redirect:/signin";
+        return "redirect:/user/signin";
     }
 }
 
