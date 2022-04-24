@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="https://thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Авиарейсы</h1>
+    <a th:href="@{/flight/new}">Добавить рейс</a>
+    <div th:each="flight : ${flights}">
+            <a th:text="${flight.flyNumber}" th:href="@{/flight/{id}(id=${flight.id})}">flyNumber</a>
+    </div>
+</body>
+</html>
