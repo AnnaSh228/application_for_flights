@@ -19,18 +19,22 @@ public class User {
     private String name;
     @Column(nullable = false)
     private String lastname;
-    @Column(nullable = false, length = 3000)
-    private String password;
-    @Column(nullable = false, unique=true, length=10)
-    private int passportNumber;
-    @Column(nullable = false, unique=true)
-    private String address;
-    @Column(nullable = false, unique=true, length=16)
-    private int bankcardNumber;
     @Column(nullable = false)
+    private String password;
+    @Column
+    private int passportNumber;
+    @Column
+    private String address;
+    @Column
+    private int bankcardNumber;
+    @Column
     private String email;
-    @Column(nullable = false, unique=true, length=11)
-    private int phoneNumber;
+    @Column
+    private String phoneNumber;
+
+    @Column
+    @ElementCollection(targetClass = String.class)
+    private Set<String> role = new HashSet<>();
 
     @Column
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)

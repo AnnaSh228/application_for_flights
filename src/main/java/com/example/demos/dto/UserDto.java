@@ -1,6 +1,9 @@
 package com.example.demos.dto;
 
+import lombok.Data;
 
+
+@Data
 public class UserDto {
     public String username;
     
@@ -10,15 +13,15 @@ public class UserDto {
     
     public String password;
     
-    public int passportNumber;
+    public String passportNumber;
    
     public String address;
    
-    public int bankcardNumber;
+    public String bankcardNumber;
     
     public String email;
     
-    public int phoneNumber;
+    public String phoneNumber;
 
     
 }
