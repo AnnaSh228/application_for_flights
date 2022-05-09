@@ -1,5 +1,4 @@
 package com.example.demos.security;
-
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -65,3 +64,5 @@ public class CustomUserDetail implements UserDetails {
         return true;
     }
 }
+
+

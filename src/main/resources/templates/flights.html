@@ -10,12 +10,20 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="/logout"><h3>Выйти</h3></a>
+
 
     <h1>Авиарейсы</h1>
-    <a th:href="@{/flight/new}">Добавить рейс</a>
+    <a th:href="@{/flights/new}">Добавить рейс</a>
     <div th:each="flight : ${flights}">
             <a th:text="${flight.flyNumber}" th:href="@{/flight/{id}(id=${flight.id})}">flyNumber</a>
             <a th:text="${flight.flightCancellation}" th:href="@{/flight/{id}(id=${flight.id})}">flightCancellation</a>
+            <a th:text="${flight.ticketPrice}" th:href="@{/flight/{id}(id=${flight.id})}">ticketPrice</a>
+            <a th:text="${flight.flightDuration}" th:href="@{/flight/{id}(id=${flight.id})}">flightDuration</a>
+            <a th:text="${flight.distanceInKm}" th:href="@{/flight/{id}(id=${flight.id})}">distanceInKm</a>
+            <a th:text="${flight.departureAirport}" th:href="@{/flight/{id}(id=${flight.id})}">departureAirport</a>
+            <a th:text="${flight.arrivalAirport}" th:href="@{/flight/{id}(id=${flight.id})}">arrivalAirport</a>
     </div>
 </body>
 </html>
+    

@@ -34,10 +34,12 @@ public class UserController {
         return "signup";
     }
 
-    // @PostMapping("/signin")
-    // public String signIn(UserDto userDto, Model model){
-    //     return "redirect:/flights";
-    // }
+     @PostMapping("/signin")
+     public String signIn(UserDto userDto, Model model){
+        LOG.info("<<<!!!>>> Post signup {}", userDto.username);
+        userService.createUser(userDto);
+         return "redirect:/user/signup";
+     }
 
     @PostMapping("/signup")
     public String signUp(UserDto userDto, Model model){

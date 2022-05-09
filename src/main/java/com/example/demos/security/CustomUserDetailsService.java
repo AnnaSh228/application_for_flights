@@ -1,8 +1,5 @@
 package com.example.demos.security;
 
-import com.example.demos.entity.User;
-import com.example.demos.repositories.UserRepository;
-
 import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,13 +14,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import com.example.demos.entity.User;
+import com.example.demos.repositories.UserRepository;
+import com.example.demos.security.CustomUserDetail;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CustomUserDetailService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
-    private Logger LOG = LoggerFactory.getLogger(CustomUserDetailService.class);
+    private Logger LOG = LoggerFactory.getLogger(CustomUserDetailsService.class);
 
     private final UserRepository userRepository;
     @PersistenceContext
@@ -31,7 +33,7 @@ public class CustomUserDetailService implements UserDetailsService {
 
 
     @Autowired
-    public CustomUserDetailService(UserRepository userRepository) {
+    public CustomUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -39,6 +41,7 @@ public class CustomUserDetailService implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String username) {
         User user = userRepository.findUserByUsername(username);
+        LOG.info("User try auth");
         if(user == null){
             LOG.error("User with {} username not found", username);
             throw new UsernameNotFoundException("User not found");

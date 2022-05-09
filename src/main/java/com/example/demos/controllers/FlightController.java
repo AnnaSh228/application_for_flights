@@ -37,14 +37,14 @@ public class FlightController {
     @PostMapping("/new")
     public String createFlight(FlightDto flightDto, Model model){
         flightService.createFlight(flightDto);
-        return "redirect:/flight/";
+        return "redirect:/flights/";
     }
     
 
     @GetMapping("/{id}")
     public String detailFlightPage(@PathVariable("id") long flightId, Model model){
         Flight flight = flightService.getFlight(flightId);
-        model.addAttribute("flight", flight);
+        model.addAttribute("flights", flight);
 
         return "detailFlight";
         

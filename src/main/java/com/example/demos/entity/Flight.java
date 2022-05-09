@@ -32,16 +32,18 @@ public class Flight {
     @Column
     private String arrivalAirport;
 
+    public Flight(){
+    }
   
-public Flight(String flyNumber, boolean flightCancellation, float ticketPrice, float flightDuration, float distanceInKm,String departureAirport,String arrivalAirport){
-    this.flyNumber=flyNumber;
-    this.flightCancellation=flightCancellation;
-    this.ticketPrice=ticketPrice;
-    this.flightDuration=flightDuration;
-    this.distanceInKm=distanceInKm;
-    this.departureAirport=departureAirport;
-    this.arrivalAirport=arrivalAirport;
-}
+    public Flight(String flyNumber, boolean flightCancellation, float ticketPrice, float flightDuration, float distanceInKm,String departureAirport,String arrivalAirport){
+        this.flyNumber=flyNumber;
+        this.flightCancellation=flightCancellation;
+        this.ticketPrice=ticketPrice;
+        this.flightDuration=flightDuration;
+        this.distanceInKm=distanceInKm;
+        this.departureAirport=departureAirport;
+        this.arrivalAirport=arrivalAirport;
+    }
     
     
 

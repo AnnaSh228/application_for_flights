@@ -19,6 +19,7 @@ public class FlightService {
 
     public static final Logger LOG = LoggerFactory.getLogger(UserService.class);
     private final FlightRepository flightRepository;
+   
 
    
 
@@ -28,7 +29,7 @@ public class FlightService {
     }
 
     public Flight createFlight(FlightDto dto){
-        Flight newFlight=new Flight(null, false, 0, 0, 0, null, null);
+        Flight newFlight=new Flight(R3DFR4W, false, 1000, 1000, 18880, Marrokko, Sheremet);
         newFlight.setFlyNumber(dto.flyNumber);
         newFlight.setFlightCancellation(dto.flightCancellation);
         newFlight.setTicketPrice(dto.ticketPrice);
@@ -46,8 +47,8 @@ public class FlightService {
     }
 
 public List <Flight> getFlightList(){
-    List <Flight> list= new ArrayList<>();
-    list.add(new Flight("RFR432",false,5, 566,100,"Russia","USA"));
+    List <Flight> list = flightRepository.findAll();
+    
     return list;
 }
 

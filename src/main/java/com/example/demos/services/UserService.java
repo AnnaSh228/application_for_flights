@@ -13,6 +13,7 @@ import com.example.demos.repositories.UserRepository;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +26,7 @@ public class UserService {
     @Autowired
     FlightRepository flightRepository;
 
-    @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
+    BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     public User createUser(UserDto dto){
         User newUser=new User();

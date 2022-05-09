@@ -9,8 +9,15 @@
 <body>
     <h1>New Flight</h1>
 
-    <form th:action="@{/flight/new}" th:object="${flightDto}" th:method="POST">
+    <form th:action="@{/flights/new}" th:object="${flightDto}" th:method="POST">
         <input type="text" title="flyNumber" placeholder="flyNumber" th:field="*{flyNumber}"></input>
+        <input type="text" title="flightCancellation" placeholder="flightCancellation" th:field="*{flightCancellation}"></input>
+        <input type="text" title="ticketPrice" placeholder="ticketPrice" th:field="*{ticketPrice}"></input>
+        <input type="text" title="flightDuration" placeholder="flightDuration" th:field="*{flightDuration}"></input>
+        <input type="text" title="distanceInKm" placeholder="distanceInKm" th:field="*{distanceInKm}"></input>
+        <input type="text" title="departureAirport" placeholder="departureAirport" th:field="*{departureAirport}"></input>
+        <input type="text" title="arrivalAirport" placeholder="arrivalAirport" th:field="*{arrivalAirport}"></input>
+
         <input type="submit">
     </form>
 
