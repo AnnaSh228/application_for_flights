@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
     <a href="/logout"><h3>Выйти</h3></a>
@@ -15,15 +16,29 @@
 
     <h1>Авиарейсы</h1>
     <a th:href="@{/flights/new}">Добавить рейс</a>
+
+<!-- <form action="#" th:action="@{/}" th:object="${search}">
+ <label for="search_input">Поиск подходящих авиабилетов</label> <input name="search"
+                                                  id="search">
+ </input>
+ <div th:if="${not #lists.isEmpty(search)}">
+     <h2>Результаты поиска</h2>
+     
+         <div th:each="search : ${flight}">
+            <a th:text="${search.flyNumber}" th:href="@{/flights/{id}(id=${flight.id})}">flyNumber</a>
+         
+ </div> -->
+
+    <!-- <h2 th:if="${searchCountry != null}" th:text="'Поиск по стране: ' + ${searchCountry}"></h2> -->
     <div th:each="flight : ${flights}">
-            <a th:text="${flight.flyNumber}" th:href="@{/flight/{id}(id=${flight.id})}">flyNumber</a>
-            <a th:text="${flight.flightCancellation}" th:href="@{/flight/{id}(id=${flight.id})}">flightCancellation</a>
-            <a th:text="${flight.ticketPrice}" th:href="@{/flight/{id}(id=${flight.id})}">ticketPrice</a>
-            <a th:text="${flight.flightDuration}" th:href="@{/flight/{id}(id=${flight.id})}">flightDuration</a>
-            <a th:text="${flight.distanceInKm}" th:href="@{/flight/{id}(id=${flight.id})}">distanceInKm</a>
-            <a th:text="${flight.departureAirport}" th:href="@{/flight/{id}(id=${flight.id})}">departureAirport</a>
-            <a th:text="${flight.arrivalAirport}" th:href="@{/flight/{id}(id=${flight.id})}">arrivalAirport</a>
-    </div>
+            
+       <form action="">
+        <a th:text="${flight.flyNumber}" th:href="@{/flights/{id}(id=${flight.id})}">flyNumber</a>
+           <button type="submit">delete</button>
+       </div>
+</form>
+
+       
 </body>
 </html>
     

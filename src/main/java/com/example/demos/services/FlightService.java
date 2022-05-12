@@ -1,6 +1,14 @@
 package com.example.demos.services;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import com.example.demos.dto.FlightDto;
 import com.example.demos.entity.Flight;
@@ -20,7 +28,8 @@ public class FlightService {
     public static final Logger LOG = LoggerFactory.getLogger(UserService.class);
     private final FlightRepository flightRepository;
    
-
+    @PersistenceContext
+    private EntityManager em;
    
 
     @Autowired
@@ -29,14 +38,23 @@ public class FlightService {
     }
 
     public Flight createFlight(FlightDto dto){
-        Flight newFlight=new Flight(R3DFR4W, false, 1000, 1000, 18880, Marrokko, Sheremet);
+        Flight newFlight=new Flight();
         newFlight.setFlyNumber(dto.flyNumber);
-        newFlight.setFlightCancellation(dto.flightCancellation);
+     
         newFlight.setTicketPrice(dto.ticketPrice);
         newFlight.setFlightDuration(dto.flightDuration);
         newFlight.setDistanceInKm(dto.distanceInKm);
         newFlight.setDepartureAirport(dto.departureAirport);
         newFlight.setArrivalAirport(dto.arrivalAirport);
+        newFlight.setCountry(dto.country);
+       /* StringBuilder fullTime = new StringBuilder();
+        fullTime.append(dto.arrivalDate).append(" ").append(dto.arrivalDate).append(":00");
+        LocalDateTime dateTime = LocalDateTime.parse(fullTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        fullTime.append(dto.departureDate).append(" ").append(dto.departureDate).append(":00");
+        LocalDateTime dateTime1 = LocalDateTime.parse(fullTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        newFlight.setArrivalDate(dateTime);
+        newFlight.setDepartureDate(dateTime1);*/
+
         try{
             LOG.info("Saving flight {}", dto.flyNumber);
             return flightRepository.save(newFlight);
@@ -54,6 +72,31 @@ public List <Flight> getFlightList(){
 
 public Flight getFlight(long id) {
     return flightRepository.findFlightById( id);
+}
+public boolean deleteFlight(long flightId){
+    if (flightRepository.findById(flightId).isPresent()) {
+        flightRepository.deleteById(flightId);
+        return true;
+    }
+    return false;
+}
+// private Set<String> getCountryFromStr(String str){
+//     String[] tags = str.split("&;");
+//     return new HashSet<>(Arrays.asList(tags));
+// }
+
+public List<Flight> getByCountryFlight(String country) {
+    List <Flight> flight = flightRepository.findAllFlightByCountry(country);
+    return flight;
+}
+
+public List<Flight> allFlights() {
+    return flightRepository.findAll();
+}
+
+public List<Flight> flightgtList(Long idMin) {
+    return em.createQuery("SELECT u FROM Flight u WHERE u.id > :paramId", Flight.class)
+            .setParameter("paramId", idMin).getResultList();
 }
 
 }

@@ -2,20 +2,27 @@ package com.example.demos.controllers;
 
 
 
+import javax.validation.Valid;
+
 import com.example.demos.dto.UserDto;
+import com.example.demos.entity.User;
 import com.example.demos.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Controller
 @RequestMapping("/user")
+@CrossOrigin
 public class UserController {
     public static final Logger LOG = LoggerFactory.getLogger(UserService.class);
     @Autowired
@@ -47,6 +54,7 @@ public class UserController {
         userService.createUser(userDto);
         return "redirect:/user/signin";
     }
+   
 }
 
 

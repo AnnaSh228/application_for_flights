@@ -49,7 +49,5 @@ public class User {
         this.createdDate = LocalDateTime.now();
     }
 
-    public Object setUserRole() {
-        return null;
-    }
+    
 }
