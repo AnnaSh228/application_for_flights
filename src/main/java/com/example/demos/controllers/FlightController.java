@@ -60,18 +60,6 @@ public class FlightController {
     }     
     @DeleteMapping("/{id}")
     public void deleteFlight(long flightId, Model model){
-flightService.deleteFlight(flightId);
+        flightService.deleteFlight(flightId);
     }
-   @GetMapping("/{country}")
-    public String flightByCountry(@PathVariable("country") String country, Model model){
-        List<Flight> flights = flightService.getByCountryFlight(country);
-        model.addAttribute("flights", flights);
-        model.addAttribute("searchCountry", country);
-        return "flights";
-    }
-    /*@GetMapping("/{id}/edit")
-    public String flightEdit(@PathVariable(value="id") Long id, Model model){
-       Optional <Flight> flights = FlightRepository.findById(id);
-        return "flightsEdit";
-    }*/
 }

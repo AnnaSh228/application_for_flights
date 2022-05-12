@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en"
-	  xmlns:th="https://thymeleaf.org"
-	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns:th="https://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
   <meta charset="utf-8">
   <title>Регистрация</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <base href="/" />
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+  <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
   <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
@@ -14,28 +16,30 @@
   <div>
     <h1>Регистрация</h1>
     <form th:method="POST" class="login_form" th:action="@{/user/signup}" th:object="${userDto}">
-        <div class="login_form_input">
-          <input type ="text" th:field="*{name}" placeholder="Введите имя" required="" >
-        </div>
-        <div class="login_form_input">
-          <input type ="text"  th:field="*{lastname}" placeholder="Введите фамилию" required="">
-        </div>
-        <div class="login_form_input">
-          <input type ="text" th:field="*{username}" placeholder="Введите имя пользователя" required="" autocomplete="off">
-        </div>
-        <div class="login_form_input">
-          <input type ="email" th:field="*{email}" placeholder="Введите E-mail" required="" >
-        </div>
-        <div class="login_form_input">
-          <input type ="phoneNumber" th:field="*{phoneNumber}" placeholder="Введите номер телефона" required="">
-        </div>
-        <div class="login_form_input">
-          <input type ="password" th:field="*{password}" placeholder="Введите пароль" required="" autocomplete="off">
-        </div>
-        <div class="form_form_button">
-          <input type ="submit" value="Создать аккаунт"/>
-        </div>
+      <div class="login_form_input">
+        <input type="text" th:field="*{name}" placeholder="Введите имя" required="">
+      </div>
+      <div class="login_form_input">
+        <input type="text" th:field="*{lastname}" placeholder="Введите фамилию" required="">
+      </div>
+      <div class="login_form_input">
+        <input type="text" th:field="*{username}" placeholder="Введите имя пользователя" required="" autocomplete="off">
+      </div>
+      <div class="login_form_input">
+        <input type="email" th:field="*{email}" placeholder="Введите E-mail" required="">
+      </div>
+      <div class="login_form_input">
+        <input type="phoneNumber" th:field="*{phoneNumber}" placeholder="Введите номер телефона" required="">
+      </div>
+      <div class="login_form_input">
+        <input type="password" th:field="*{password}" placeholder="Введите пароль" required="" autocomplete="off">
+      </div>
+      <div class="form_form_button">
+        <input type="submit" value="Создать аккаунт" />
+      </div>
     </form>
+
+    <h4><a th:href="@{/user/signin}">Войти</a></h4>  
   </div>
 </body>
 

@@ -12,24 +12,18 @@ import lombok.Setter;
 @Setter
 public class FlightDto {
     public String flyNumber;
-    
-   
- 
+
     public float ticketPrice;
-    
+
     public float flightDuration;
-    
+
     public float distanceInKm;
-   
+
     public String departureAirport;
-   
+
     public String arrivalAirport;
-    // public String arrivalDate;
-    // public String departureDate;
+    public String arrivalDate;
+    public String departureDate;
     public String country;
-
-
-
-
 
 }

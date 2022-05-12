@@ -47,13 +47,14 @@ public class FlightService {
         newFlight.setDepartureAirport(dto.departureAirport);
         newFlight.setArrivalAirport(dto.arrivalAirport);
         newFlight.setCountry(dto.country);
-       /* StringBuilder fullTime = new StringBuilder();
-        fullTime.append(dto.arrivalDate).append(" ").append(dto.arrivalDate).append(":00");
-        LocalDateTime dateTime = LocalDateTime.parse(fullTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        fullTime.append(dto.departureDate).append(" ").append(dto.departureDate).append(":00");
-        LocalDateTime dateTime1 = LocalDateTime.parse(fullTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+        String arrivalDate = dto.arrivalDate.replace("T", " ");
+        LocalDateTime dateTime = LocalDateTime.parse(arrivalDate + ":00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         newFlight.setArrivalDate(dateTime);
-        newFlight.setDepartureDate(dateTime1);*/
+
+        String departureDate = dto.departureDate.replace("T", " ");
+        LocalDateTime dateTime1 = LocalDateTime.parse(departureDate + ":00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        newFlight.setDepartureDate(dateTime1);
 
         try{
             LOG.info("Saving flight {}", dto.flyNumber);

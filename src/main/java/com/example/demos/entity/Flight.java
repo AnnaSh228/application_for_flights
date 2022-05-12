@@ -33,6 +33,11 @@ public class Flight {
     private String arrivalAirport;
     @Column
     private String country;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime departureDate;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime arrivalDate;
 
     public Flight(){
     }
@@ -48,53 +53,26 @@ public class Flight {
         this.country=country;
     }
     
-    
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime departureDate;
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime arrivalDate;
 
     @PrePersist
     protected void onCreate(){
         this.departureDate = LocalDateTime.now();
         this.arrivalDate = LocalDateTime.now();
     }
-    public String getSDate(){
-        String date = arrivalDate.toString();
-        System.out.println(Arrays.toString(date.split("T")));
-        date = date.split("T")[0];
 
-        return date;
-    }
-
-    public String getSTime(){
-        String time = arrivalDate.toString();
-        time = time.split("T")[1];
-        time = time.substring(0, 5);
-
-        return time;
-    }
-
-    public String getSDate1(){
+    public String getDepartureDate(){
         String date = departureDate.toString();
-        System.out.println(Arrays.toString(date.split("T")));
-        date = date.split("T")[0];
-
+        date = date.replace("T", " ");
+        date = date.substring(0, 16);
         return date;
     }
 
-    public String getSTime1(){
-        String time = departureDate.toString();
-        time = time.split("T")[1];
-        time = time.substring(0, 5);
-
-        return time;
+    public String getArrivalDate(){
+        String date = arrivalDate.toString();
+        date = date.replace("T", " ");
+        date = date.substring(0, 16);
+        return date;
     }
 
-
-    
-    
-    
 }

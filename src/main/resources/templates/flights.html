@@ -1,44 +1,57 @@
 <!DOCTYPE html>
-<html lang="en"
-    xmlns:th="https://thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns:th="https://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <base href="/" />
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
-    <a href="/logout"><h3>Выйти</h3></a>
+    <header th:insert="fragments/header.html :: header"></header>
+    
+    <form action="@{/flights/filter}" th:object=""></form>
 
+    <div class="container" style="margin-top: 20px;">
+        <div th:each="flight : ${flights}" class="container flight-container">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3>
+                        <a th:text="${flight.flyNumber}" th:href="@{/flights/{id}(id=${flight.id})}">flyNumber</a>
+                    </h3>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <p class="col text-sm-start fw-bold">Departure Airport: 
+                        </p>
+                        <span class="col fw-normal" th:text="${flight.departureAirport}"></span>
+                    </div>
+                    <div class="row">
+                        <p class="col text-sm-start fw-bold">Arrival Airport: 
+                        </p>
+                        <span class="col fw-normal" th:text="${flight.arrivalAirport}"></span>
+                    </div>
+                    <div class="row">
+                        <span class="col">Time: </span>
+                        <span class="col" th:text="${flight.getDepartureDate}"></span>
+                        <span class="col">-</span>
+                        <span class="col" th:text="${flight.getArrivalDate}"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <form action="">
+                        <button type="submit" class="btn btn-outline-danger float-end">delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <h1>Авиарейсы</h1>
-    <a th:href="@{/flights/new}">Добавить рейс</a>
-
-<!-- <form action="#" th:action="@{/}" th:object="${search}">
- <label for="search_input">Поиск подходящих авиабилетов</label> <input name="search"
-                                                  id="search">
- </input>
- <div th:if="${not #lists.isEmpty(search)}">
-     <h2>Результаты поиска</h2>
-     
-         <div th:each="search : ${flight}">
-            <a th:text="${search.flyNumber}" th:href="@{/flights/{id}(id=${flight.id})}">flyNumber</a>
-         
- </div> -->
-
-    <!-- <h2 th:if="${searchCountry != null}" th:text="'Поиск по стране: ' + ${searchCountry}"></h2> -->
-    <div th:each="flight : ${flights}">
-            
-       <form action="">
-        <a th:text="${flight.flyNumber}" th:href="@{/flights/{id}(id=${flight.id})}">flyNumber</a>
-           <button type="submit">delete</button>
-       </div>
-</form>
-
-       
 </body>
 </html>
-    

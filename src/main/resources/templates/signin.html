@@ -3,18 +3,24 @@
 <head>
   <meta charset="utf-8">
   <title>Log in with your account</title>
+  <base href="/" />
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+  <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
-<div>
-  <form method="POST" action="/user/signin">
+<div class="container">
+  <form method="POST" th:action="@{/user/signin}">
     <h2>Вход в систему</h2>
-    <div>
-      <input name="username" type="text" placeholder="Username"
+    <div >
+      <input class="form-text" name="username" type="text" placeholder="Username"
              autofocus="true"/>
-      <input name="password" type="password" placeholder="Password"/>
-      <button type="submit">Войти</button>
-       <h4><a href="/user/signup">Зарегистрироваться</a></h4>  
+      <input class="form-control" name="password" type="password" placeholder="Password"/>
+      
+      <button class="btn btn-primary" type="submit">Войти</button>
+
+       <h4><a th:href="@{/user/signup}">Зарегистрироваться</a></h4>  
     </div>
   </form>
 </div>

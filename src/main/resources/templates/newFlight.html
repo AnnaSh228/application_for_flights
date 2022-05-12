@@ -1,54 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <base href="/" />
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-<body>
-    <h1>Создание нового рейса</h1>
 
+<body>
+    <header th:insert="fragments/header.html :: header"></header>
+
+    <h1>Создание нового рейса</h1>
     <form th:action="@{/flights/new}" th:object="${flightDto}" th:method="POST">
         <div class="order-form_form_input">
-            <h4>Введите номер рейса</h4>
-        <input type="text" title="flyNumber" placeholder="flyNumber" th:field="*{flyNumber}"></input>
-    </div>
-    <div class="order-form_form_input">
-        <h4>Введите страну прибытия рейса</h4>
-    <input type="text" title="country" placeholder="country" th:field="*{country}"></input>
-</div>
-    <!-- <div class="order-form_form_input">
-        <h4>Введите дату прибытия в страну</h4>
-        <input type="datetime-local" name="date" th:field="*{arrivalDate}" placeholder="Выберите дату" required="">
-    </div>
-    <div class="order-form_form_input">
-        <h4>Введите дату отправления из страны</h4>
-        <input type="datetime-local" name="date" th:field="*{departureDate}" placeholder="Выберите дату" required="">
-    </div> --> 
-    <div class="order-form_form_input">
-        <h4>Введите стоимость билета</h4>
-    <input type="text" title="ticketPrice" placeholder="ticketPrice" th:field="*{ticketPrice}"></input>
-</div>
-<div class="order-form_form_input">
-    <h4>Введите время полета в минутах</h4>
-<input type="text" title="flightDuration" placeholder="flightDuration" th:field="*{flightDuration}"></input>
-</div>
-<div class="order-form_form_input">
-    <h4>Введите  расстояние полета в километрах</h4>
-<input type="text" title="distanceInKm" placeholder="distanceInKm" th:field="*{distanceInKm}"></input>
-</div>
-<div class="order-form_form_input">
-    <h4>Введите аэропорт отправления</h4>
-<input type="text" title="departureAirport" placeholder="departureAirport" th:field="*{departureAirport}"></input>
-</div>
-<div class="order-form_form_input">
-    <h4>Введите аэропорт прибытия</h4>
-<input type="text" title="arrivalAirport" placeholder="arrivalAirport" th:field="*{arrivalAirport}"></input>
-</div>
-        
+            <h4>Введите номер рейса</h4><br>
+            <input type="text" title="flyNumber" placeholder="flyNumber" th:field="*{flyNumber}"></input>
+        </div>
+        <div class="order-form_form_input">
+            <h4>Введите страну прибытия рейса</h4>
+            <input type="text" title="country" placeholder="country" th:field="*{country}"></input>
+        </div>
+        <div class="order-form_form_input">
+            <h4>Введите дату прибытия в страну</h4>
+            <input type="datetime-local" name="date" th:field="*{arrivalDate}" placeholder="Выберите дату" required="">
+        </div>
+        <div class="order-form_form_input">
+            <h4>Введите дату отправления из страны</h4>
+            <input type="datetime-local" name="date" th:field="*{departureDate}" placeholder="Выберите дату"
+                required="">
+        </div>
+        <div class="order-form_form_input">
+            <h4>Введите стоимость билета</h4>
+            <input type="number" title="ticketPrice" placeholder="ticketPrice" th:field="*{ticketPrice}"></input>
+        </div>
+        <div class="order-form_form_input">
+            <h4>Введите время полета в минутах</h4>
+            <input type="number" title="flightDuration" placeholder="flightDuration" th:field="*{flightDuration}"></input>
+        </div>
+        <div class="order-form_form_input">
+            <h4>Введите расстояние полета в километрах</h4>
+            <input type="number" title="distanceInKm" placeholder="distanceInKm" th:field="*{distanceInKm}"></input>
+        </div>
+        <div class="order-form_form_input">
+            <h4>Введите аэропорт отправления</h4>
+            <input type="text" title="departureAirport" placeholder="departureAirport"
+                th:field="*{departureAirport}"></input>
+        </div>
+        <div class="order-form_form_input">
+            <h4>Введите аэропорт прибытия</h4>
+            <input type="text" title="arrivalAirport" placeholder="arrivalAirport" th:field="*{arrivalAirport}"></input>
+        </div>
+
         <input type="submit">
     </form>
 
 </body>
+
 </html>
