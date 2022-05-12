@@ -3,6 +3,7 @@ package com.example.demos.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.demos.dto.FilterDto;
 import com.example.demos.dto.FlightDto;
 import com.example.demos.entity.Flight;
 import com.example.demos.repositories.FlightRepository;
@@ -27,7 +28,18 @@ public class FlightController {
     public String flightsPage(Model model){
        List <Flight> list=flightService.getFlightList();
        model.addAttribute("flights",list);
+       model.addAttribute("filterDto", new FilterDto());
+
     return "flights";
+    }
+
+    @PostMapping("/filter")
+    public String filterPage(Model model, FilterDto flightDto){
+       List <Flight> list=flightService.getFilterList(flightDto);
+       model.addAttribute("flights", list);
+       model.addAttribute("filterDto", new FilterDto());
+
+        return "flights";
     }
 
     @GetMapping("/new")
@@ -48,6 +60,7 @@ public class FlightController {
     public String detailFlightPage(@PathVariable("id") long flightId, Model model){
         Flight flight = flightService.getFlight(flightId);
         model.addAttribute("flights", flight);
+
 
         return "detailFlight";
         

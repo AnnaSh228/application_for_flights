@@ -61,14 +61,14 @@ public class Flight {
         this.arrivalDate = LocalDateTime.now();
     }
 
-    public String getDepartureDate(){
+    public String getDepartureDateStr(){
         String date = departureDate.toString();
         date = date.replace("T", " ");
         date = date.substring(0, 16);
         return date;
     }
 
-    public String getArrivalDate(){
+    public String getArrivalDateStr(){
         String date = arrivalDate.toString();
         date = date.replace("T", " ");
         date = date.substring(0, 16);

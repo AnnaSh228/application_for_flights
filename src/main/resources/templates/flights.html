@@ -15,8 +15,32 @@
 
 <body>
     <header th:insert="fragments/header.html :: header"></header>
-    
-    <form action="@{/flights/filter}" th:object=""></form>
+
+    <div class="container filter" style="background-color: white;">
+        <form th:method="POST" th:action="@{/flights/filter}" th:object="${filterDto}">
+            <div class="filter-block">
+                <label for="from-label">Departure</label>
+                <input class="form-control" type="datetime-local" name="datetime-local" th:field="*{departureDate}" required="">
+            </div>
+            <div class="filter-block">
+                <label for="from-label">Arrival</label>
+                <input class="form-control" type="datetime-local" name="date" th:field="*{arrivalDate}" required="">
+            </div>
+            <div class="filter-block">
+                <label for="from-label">Departure</label>
+                <input class="form-control" type="text" title="departureAirport" placeholder="SVO"
+                    th:field="*{departureAirport}"></input>
+            </div>
+            <div class="filter-block">
+                <label for="from-label">Arrival</label>
+                <input class="form-control" type="text" title="arrivalAirport" placeholder="DME"
+                    th:field="*{arrivalAirport}"></input>
+            </div>
+            <br>
+                <button class="col btn btn-primary mb-3" style="width: 70px;">Filter</button>
+                <a class="col btn btn-primary mb-3 btn-sm" th:href="@{/flights}" >Reset</a>
+        </form>
+    </div>
 
     <div class="container" style="margin-top: 20px;">
         <div th:each="flight : ${flights}" class="container flight-container">
@@ -28,20 +52,20 @@
                 </div>
                 <div class="col-6">
                     <div class="row">
-                        <p class="col text-sm-start fw-bold">Departure Airport: 
+                        <p class="col text-sm-start fw-bold">Departure Airport:
                         </p>
                         <span class="col fw-normal" th:text="${flight.departureAirport}"></span>
                     </div>
                     <div class="row">
-                        <p class="col text-sm-start fw-bold">Arrival Airport: 
+                        <p class="col text-sm-start fw-bold">Arrival Airport:
                         </p>
                         <span class="col fw-normal" th:text="${flight.arrivalAirport}"></span>
                     </div>
                     <div class="row">
                         <span class="col">Time: </span>
-                        <span class="col" th:text="${flight.getDepartureDate}"></span>
+                        <span class="col" th:text="${flight.getDepartureDateStr()}"></span>
                         <span class="col">-</span>
-                        <span class="col" th:text="${flight.getArrivalDate}"></span>
+                        <span class="col" th:text="${flight.getArrivalDateStr()}"></span>
                     </div>
                 </div>
                 <div class="col">
@@ -54,4 +78,5 @@
     </div>
 
 </body>
+
 </html>

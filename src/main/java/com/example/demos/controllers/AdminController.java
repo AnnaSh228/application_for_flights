@@ -39,7 +39,6 @@ public class AdminController {
 
     @GetMapping("/admin/flights/{flightId}")
     public String  gtFlight(@PathVariable("flightId") Long flightId, Model model) {
-        model.addAttribute("allFlights", flightService.flightgtList(flightId));
         return "admin";
     }
 }

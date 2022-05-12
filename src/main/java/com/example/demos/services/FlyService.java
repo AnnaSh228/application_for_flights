@@ -22,6 +22,7 @@ public class FlyService {
         newFly.setMaximumFuel(dto.maximumFuel);
         newFly.setFuelConsumption(dto.fuelConsumption);
         return newFly;
-}
-    
+    }
+
+
 }

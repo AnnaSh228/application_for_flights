@@ -9,6 +9,10 @@ body{
 	margin: 10px;
 }
 
-input{
-	height: 15px;
+.header{
+	min-height: 65px;
+}
+
+.filter-block{
+	margin-top: 5px;
 }
