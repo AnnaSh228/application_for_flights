@@ -12,6 +12,56 @@
 </head>
 <body>
     <header th:insert="fragments/header.html :: header"></header>
+    
+    
+
+    <div class="container" style="margin-top: 20px;">
+        <div th:each="flight : ${flights}" class="container flight-container">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3>
+                        <a th:text="${flight.flyNumber}" th:href="@{/flights/{id}(id=${flight.id})}">flyNumber</a>
+                    </h3>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <p class="col text-sm-start fw-bold">Аэропорт отправления:
+                        </p>
+                        <span class="col fw-normal" th:text="${flight.departureAirport}"></span>
+                    </div>
+                    <div class="row">
+                        <p class="col text-sm-start fw-bold">Аэропорт прибытия:
+                        </p>
+                        <span class="col fw-normal" th:text="${flight.arrivalAirport}"></span>
+                    </div>
+                    <div class="row">
+                        <span class="col">Время: </span>
+                        <span class="col" th:text="${flight.getDepartureDateStr()}"></span>
+                        <span class="col">-</span>
+                        <span class="col" th:text="${flight.getArrivalDateStr()}"></span>
+                    </div>
+                    <div class="row">
+                        <span class="col">Страна прибытия: </span>
+                        <span class="col" th:text="${flight.country()}"></span>
+                    </div>
+                    <div class="row">
+                        <span class="col">Cтоимость билета: </span>
+                        <span class="col" th:text="${flight.ticketPrice()}"></span>
+                    </div>
+                    <div class="row">
+                        <span class="col">Время полета в минутах: </span>
+                        <span class="col" th:text="${flight.flightDuration()}"></span>
+                    </div>
+                    <div class="row">
+                        <span class="col">Расстояние полета в километрах: </span>
+                        <span class="col" th:text="${flight.distanceInKm()}"></span>
+                    </div>
+                </div>
+                <div class="col">
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 
