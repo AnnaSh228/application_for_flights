@@ -20,10 +20,21 @@
                 <h1><a th:href="@{/flights}">Авиарейсы</a></h1>
             </div>
             <div class="col">
-                <a th:href="@{/flights/new}" class="btn btn-primary">Добавить рейс</a>
+                <div>
+                    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/flights/new}" class="btn btn-primary">Добавить рейс</a>
+
+                </div>
             </div>
             <div class="col">
-                <a th:href="@{/logout}" class="btn btn-dark btn-sm float-end">Выйти</a>
+                <div class="row">
+                    <div class="col">
+                        <span>Hello, </span>
+                        <span sec:authentication="name">Username</span>
+                    </div>
+                    <div class="col">
+                        <a th:href="@{/logout}" class="btn btn-dark btn-sm float-end">Выйти</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

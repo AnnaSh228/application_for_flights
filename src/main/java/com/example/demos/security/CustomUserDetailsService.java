@@ -61,6 +61,8 @@ public class CustomUserDetailsService implements UserDetailsService {
             authorities.add(simpleGrantedAuthority);
         }
 
+        LOG.info("User autority {}: ", authorities);
+
         return new CustomUserDetail(
                 user.getUsername(),
                 user.getEmail(),

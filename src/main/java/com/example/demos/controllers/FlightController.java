@@ -23,14 +23,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class FlightController {
     @Autowired
     FlightService flightService;
-
+    
     @GetMapping("")
     public String flightsPage(Model model){
-       List <Flight> list=flightService.getFlightList();
-       model.addAttribute("flights",list);
-       model.addAttribute("filterDto", new FilterDto());
-
-    return "flights";
+        List <Flight> list = flightService.getFlightList();
+        model.addAttribute("flights",list);
+        model.addAttribute("filterDto", new FilterDto());
+        
+        return "flights";
     }
 
     @PostMapping("/filter")
@@ -65,12 +65,14 @@ public class FlightController {
         return "detailFlight";
         
     }
+
     @PostMapping("/{id}")
     public String detailFlight(long flightId, Model model){
        
        flightService.getFlight(flightId);
         return "redirect:/flights/detailFlight";
-    }     
+    }
+         
     @DeleteMapping("/{id}")
     public void deleteFlight(long flightId, Model model){
         flightService.deleteFlight(flightId);
