@@ -47,6 +47,7 @@
             <div class="row align-items-center">
                 <div class="col">
                     <h3>
+                         <!-- ? Пример -->
                         <a th:text="${flight.flyNumber}" th:href="@{/flights/{id}(id=${flight.id})}">Номер рейса</a>
                     </h3>
                 </div>
@@ -68,11 +69,14 @@
                         <span class="col" th:text="${flight.getArrivalDateStr()}"></span>
                     </div>
                 </div>
-                <div class="col">
-                    <form action="">
-                        <button type="submit" class="btn btn-outline-danger float-end">Удалить</button>
+                <div class="col">                        
+                        <form th:method="DELETE" th:action="@{/flights/{id}(id=${flight.id})}" >
+                            <button type="submit" class="btn btn-outline-danger float-end">Удалить</button>                    
+                    </form>
+                    <form action="купыть">
                         <button type="submit" class="btn btn-outline-danger float-end">Купить</button>
                     </form>
+                    <h4><a th:href="@{flights/update/{id}(id=${flight.id})}">Редактировать</a></h4>  
                 </div>
             </div>
         </div>

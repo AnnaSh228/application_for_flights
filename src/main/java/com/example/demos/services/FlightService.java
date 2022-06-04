@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Optional;
 
 import javax.management.Query;
 import javax.persistence.EntityManager;
@@ -15,6 +16,7 @@ import javax.persistence.PersistenceContext;
 
 import com.example.demos.dto.FilterDto;
 import com.example.demos.dto.FlightDto;
+import com.example.demos.dto.FlightUpdateDto;
 import com.example.demos.entity.Flight;
 import com.example.demos.repositories.FlightRepository;
 import com.example.demos.repositories.UserRepository;
@@ -41,6 +43,7 @@ public class FlightService {
     }
 
     public Flight createFlight(FlightDto dto) {
+        
         Flight newFlight = new Flight();
         newFlight.setFlyNumber(dto.flyNumber);
 
@@ -80,17 +83,16 @@ public class FlightService {
         return flightRepository.findFlightById(id);
     }
 
-    public boolean deleteFlight(long flightId) {
-        if (flightRepository.findById(flightId).isPresent()) {
+    public void deleteFlight(long flightId) {
+        try{    
+            LOG.info("Try delete{}", flightId);
             flightRepository.deleteById(flightId);
-            return true;
+         
+        } catch (Exception e){
+            LOG.error("Failed delete flight: {}", e);
         }
-        return false;
     }
-    // private Set<String> getCountryFromStr(String str){
-    // String[] tags = str.split("&;");
-    // return new HashSet<>(Arrays.asList(tags));
-    // }
+   
 
     public List<Flight> allFlights() {
         return flightRepository.findAll();
@@ -111,5 +113,34 @@ public class FlightService {
 
         return flightsRes;
     }
+
+    // ! Хочу питсу
+    public void updateFlight(FlightUpdateDto dto        ) {
+        Optional<Flight> ingibonga =  flightRepository.findById(dto.id);
+        if(ingibonga.isEmpty()){
+            LOG.info("Извини братан, не нашел {}", dto.id);
+        }
+        Flight flight = ingibonga.get();
+      
+        String arrivalDate = dto.arrivalDate.replace("T", " ");
+        LocalDateTime dateTime = LocalDateTime.parse(arrivalDate + ":00",
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        flight.setArrivalDate(dateTime);
+        String departureDate = dto.departureDate.replace("T", " ");
+        LocalDateTime dateTime1 = LocalDateTime.parse(departureDate + ":00",
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        flight.setDepartureDate(dateTime1);
+        flight.setTicketPrice(dto.ticketPrice);
+
+        try{    
+            LOG.info("Try update{}", dto.id);
+            flightRepository.save(flight);
+         
+        } catch (Exception e){
+            LOG.error("Failed update flight: {}", e);
+        }
+    }
+
+
 
 }

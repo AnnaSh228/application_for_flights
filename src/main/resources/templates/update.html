@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <base href="/" />
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+    <header th:insert="fragments/header.html :: header"></header>
+
+    <h1>Редактирование рейса <span th:text="${flight.id}"></span></h1></h1>
+    <form th:action="@{/flights/update}" th:object="${flightUpdateDto}" th:method="PATCH">
+        <input type="hidden" name="id" th:value="${flight.id}"/><br>
+        <div class="order-form_form_input">
+            <h4>Введите новую дату прибытия в страну</h4>
+            <input type="datetime-local" name="date" th:field="*{arrivalDate}" placeholder="Выберите дату" required="">
+        </div>
+        <div class="order-form_form_input">
+            <h4>Введите новую дату отправления из страны</h4>
+             <input type="datetime-local" name="date" th:field="*{departureDate}" placeholder="Выберите дату"
+                required=""> 
+        </div>
+        <div class="order-form_form_input">
+            <h4>Введите новую стоимость билета</h4>
+             <input type="number" title="ticketPrice" placeholder="ticketPrice" th:field="*{ticketPrice}"></input> 
+        </div>
+
+        <input type="submit">
+    </form>
+
+</body>
+
+</html>

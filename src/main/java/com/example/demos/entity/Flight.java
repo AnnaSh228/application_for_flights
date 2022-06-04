@@ -20,7 +20,6 @@ public class Flight {
     private long id;
     @Column(nullable = false, length=10)
     private String flyNumber;
-  
     @Column
     private float ticketPrice;
     @Column
