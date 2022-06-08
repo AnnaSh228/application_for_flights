@@ -1,7 +1,9 @@
 package com.example.demos.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -33,7 +35,12 @@ public class Flight {
     private String countryDeparture;
     @Column
     private String countryArrival;
- 
+
+    
+    @ManyToMany(mappedBy = "flightsBacket")
+    private List<User> users = new ArrayList<>();
+
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime departureDate;
 
