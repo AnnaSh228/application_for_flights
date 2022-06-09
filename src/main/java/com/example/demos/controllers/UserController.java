@@ -38,6 +38,7 @@ public class UserController {
      @PostMapping("/signin")
      public String signIn(UserDto userDto, Model model){
         LOG.info("<<<!!!>>> signup {}", userDto.username);
+        
         userService.createUser(userDto);
          return "redirect:/user/signup";
      }

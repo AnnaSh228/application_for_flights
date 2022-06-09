@@ -52,7 +52,7 @@ public class FlightService {
         newFlight.setDistanceInKm(dto.distanceInKm);
         newFlight.setDepartureAirport(dto.departureAirport);
         newFlight.setArrivalAirport(dto.arrivalAirport);
-        newFlight.setCountryDeparture(dto.countryArrival);
+        newFlight.setCountryDeparture(dto.countryDeparture);
         newFlight.setCountryArrival(dto.countryArrival);
         
 
@@ -117,10 +117,11 @@ public class FlightService {
     }
 
     
-    public void updateFlight(FlightUpdateDto dto) {
+    public Flight updateFlight(FlightUpdateDto dto) {
         Optional<Flight> in =  flightRepository.findById(dto.id);
         if(in.isEmpty()){
             LOG.info("не найдено {}", dto.id);
+            return null;
         }
         Flight flight = in.get();
       
@@ -136,11 +137,13 @@ public class FlightService {
 
         try{    
             LOG.info("Try update{}", dto.id);
-            flightRepository.save(flight);
+           return flightRepository.save(flight);
          
         } catch (Exception e){
             LOG.error("Failed update flight: {}", e);
+            return null;
         }
+       
     }
 
 
