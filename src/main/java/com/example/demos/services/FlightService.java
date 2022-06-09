@@ -52,7 +52,7 @@ public class FlightService {
         newFlight.setDistanceInKm(dto.distanceInKm);
         newFlight.setDepartureAirport(dto.departureAirport);
         newFlight.setArrivalAirport(dto.arrivalAirport);
-        newFlight.setCountryDeparture(dto.countryArrival);
+        newFlight.setCountryDeparture(dto.countryDeparture);
         newFlight.setCountryArrival(dto.countryArrival);
         
 
