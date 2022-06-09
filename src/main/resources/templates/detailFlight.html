@@ -21,6 +21,7 @@
                 <div class="col">
                     <h3>
                         <a th:text="${flight.flyNumber}" th:href="@{/flights/{id}(id=${flight.id})}">flyNumber</a>
+                        
                     </h3>
                 </div>
                 <div class="col-6">
@@ -41,17 +42,18 @@
                         <span class="col" th:text="${flight.getArrivalDateStr()}"></span>
                     </div>
                     <div class="row">
-                        <span class="col">Страна прибытия: </span>
-                        <span class="col" th:text="${flight.country}"></span>
+                        <span class="col">Куда: </span>
+                        <span class="col" th:text="${flight.countryArrival}"></span>
+                    </div>
+                    <div class="row">
+                        <span class="col">Откуда: </span>
+                        <span class="col" th:text="${flight.countryDeparture}"></span>
                     </div>
                     <div class="row">
                         <span class="col">Cтоимость билета: </span>
                         <span class="col" th:text="${flight.ticketPrice}"></span>
                     </div>
-                    <div class="row">
-                        <span class="col">Время полета в минутах: </span>
-                        <span class="col" th:text="${flight.flightDuration}"></span>
-                    </div>
+                   
                     <div class="row">
                         <span class="col">Расстояние полета в километрах: </span>
                         <span class="col" th:text="${flight.distanceInKm}"></span>

@@ -22,8 +22,7 @@ public class Flight {
     private String flyNumber;
     @Column
     private float ticketPrice;
-    @Column
-    private float flightDuration;
+
     @Column(nullable = false)
     private float distanceInKm;
     @Column
@@ -31,7 +30,10 @@ public class Flight {
     @Column
     private String arrivalAirport;
     @Column
-    private String country;
+    private String countryDeparture;
+    @Column
+    private String countryArrival;
+ 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime departureDate;
 
@@ -41,25 +43,21 @@ public class Flight {
     public Flight(){
     }
   
-    public Flight(String flyNumber, float ticketPrice, float flightDuration, float distanceInKm,String departureAirport,String arrivalAirport, String country){
+    public Flight(String flyNumber, float ticketPrice,  float distanceInKm,String departureAirport,String arrivalAirport, String countryDeparture,String countryArrival){
         this.flyNumber=flyNumber;
        
         this.ticketPrice=ticketPrice;
-        this.flightDuration=flightDuration;
+ 
         this.distanceInKm=distanceInKm;
         this.departureAirport=departureAirport;
         this.arrivalAirport=arrivalAirport;
-        this.country=country;
+        this.countryDeparture=countryDeparture;
+        this.countryArrival=countryArrival;
     }
     
 
 
-    @PrePersist
-    protected void onCreate(){
-        this.departureDate = LocalDateTime.now();
-        this.arrivalDate = LocalDateTime.now();
-    }
-
+  
     public String getDepartureDateStr(){
         String date = departureDate.toString();
         date = date.replace("T", " ");

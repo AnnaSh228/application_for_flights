@@ -16,10 +16,10 @@ import org.springframework.stereotype.Repository;
 public interface FlightRepository extends JpaRepository<Flight, Long> {
     Flight findFlightById(Long id);
     Flight deleteFlightById(Long id);
-    Flight findFlightByCountry(String country);
-    
-    List<Flight> findAllFlightByCountry(String country);
-
+    Flight findFlightByCountryArrival(String countryArrival);
+    Flight findFlightByCountryDeparture(String countryDeparture);
+    List<Flight> findAllFlightByCountryArrival(String countryArrival);
+    List<Flight> findAllFlightByCountryDeparture(String countryDeparture);
     // @Query(value = 
     //     "SELECT * FROM flight WHERE arrival_airport = ?1" +
     //     "AND departure_airport = ?2"+
@@ -29,6 +29,6 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
     //     LocalDateTime arrivalDate, LocalDateTime departureDate);
  
     
-    List<Flight> findAllByArrivalAirportAndDepartureAirport(String arrival, String departure);
+    List<Flight> findAllByCountryArrivalAndCountryDeparture(String arrival, String departure);
 
 }

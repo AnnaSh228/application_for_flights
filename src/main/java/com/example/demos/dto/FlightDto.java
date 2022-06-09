@@ -15,7 +15,6 @@ public class FlightDto {
 
     public float ticketPrice;
 
-    public float flightDuration;
 
     public float distanceInKm;
 
@@ -24,6 +23,7 @@ public class FlightDto {
     public String arrivalAirport;
     public String arrivalDate;
     public String departureDate;
-    public String country;
+    public String countryArrival;
+    public String countryDeparture;
 
 }

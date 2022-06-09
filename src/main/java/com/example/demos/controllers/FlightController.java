@@ -101,6 +101,22 @@ public class FlightController {
         model.addAttribute("flightUpdateDto", new FlightUpdateDto());
         return "update";
     }
+
+    // @GetMapping("/{fly}")
+    // public String flyPage(@PathVariable("id") long flightId, Model model){
+    //     Flight flight = flightService.getFlight(flightId);
+    //     model.addAttribute("flights", flight);
+
+    //     return "detailFlight";
+    // }
+
+
+    // @PostMapping("/{id}")
+    // public String detailFlight(long flightId, Model model){
+       
+    //    flightService.getFlight(flightId);
+    //     return "redirect:/flights/detailFlight";
+    // }
     
 
  

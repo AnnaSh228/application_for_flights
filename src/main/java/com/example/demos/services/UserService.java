@@ -29,6 +29,7 @@ public class UserService implements UserDetailsService{
     public static final Logger LOG = LoggerFactory.getLogger(UserService.class);
     @Autowired
     UserRepository userRepository;
+    
 
     @Autowired
     FlightRepository flightRepository;
@@ -68,6 +69,25 @@ public class UserService implements UserDetailsService{
         }
         return null;
     }
+
+    public User getUserById(Long id){
+        Optional<User> user = userRepository.findUserById(id);
+        if(user.isEmpty()){
+            LOG.error("Error not found user, id {}", id);
+            return null;
+        }
+        
+       
+
+        return user.get();
+    }
+
+
+    public void deleteUserById(Long id){
+        Optional<User> user = userRepository.findUserById(id);
+        user.ifPresent(userRepository::delete);
+    }
+
     public User findUserById(Long userId) {
         Optional<User> userFromDb = userRepository.findById(userId);
         return userFromDb.orElse(new User());

@@ -9,28 +9,28 @@ import lombok.Data;
 
 @Data
 public class FilterDto {
-    String departureAirport = null;
-    String arrivalAirport = null;
+    String countryDeparture = null;
+    String countryArrival = null;
     String departureDate = null;
     String arrivalDate = null;
 
-    public LocalDateTime getDepartureDate(){
+    public LocalDate getDepartureDate(){
         try{
             departureDate = departureDate.replace("T", " ");
-            LocalDateTime dateTime = LocalDateTime.parse(departureDate + ":00",
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            return dateTime;
+            LocalDate date = LocalDate.parse(departureDate,
+            DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            return date;
         } catch(Exception e){
             return null;
         }
     }
 
-    public LocalDateTime getArrivalDate(){
+    public LocalDate getArrivalDate(){
         try{
             arrivalDate = arrivalDate.replace("T", " ");
-            LocalDateTime dateTime = LocalDateTime.parse(arrivalDate + ":00",
+            LocalDate date = LocalDate.parse(arrivalDate,
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            return dateTime;
+            return date;
         } catch(Exception e){
             return null;
         }

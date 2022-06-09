@@ -20,25 +20,22 @@
         <form th:method="POST" th:action="@{/flights/filter}" th:object="${filterDto}">
             <div class="filter-block">
                 <label for="from-label">Отправление</label>
-                <input class="form-control" type="datetime-local" name="datetime-local" th:field="*{departureDate}" required="">
+                <input class="form-control" type="date" name="date" th:field="*{departureDate}" required="">
+            </div>
+           
+            <div class="filter-block">
+                <label for="from-label">Откуда</label>
+                <input class="form-control" type="text" title="departureAirport" placeholder="Moscow"
+                    th:field="*{countryDeparture}"></input>
             </div>
             <div class="filter-block">
-                <label for="from-label">Прибытие</label>
-                <input class="form-control" type="datetime-local" name="date" th:field="*{arrivalDate}" required="">
-            </div>
-            <div class="filter-block">
-                <label for="from-label">Отправление</label>
-                <input class="form-control" type="text" title="departureAirport" placeholder="SVO"
-                    th:field="*{departureAirport}"></input>
-            </div>
-            <div class="filter-block">
-                <label for="from-label">Прибытие</label>
-                <input class="form-control" type="text" title="arrivalAirport" placeholder="DME"
-                    th:field="*{arrivalAirport}"></input>
+                <label for="from-label">Куда</label>
+                <input class="form-control" type="text" title="arrivalAirport" placeholder="Irkutsk"
+                    th:field="*{countryArrival}"></input>
             </div>
             <br>
                 <button class="col btn btn-primary mb-3" style="width: 70px;">Фильтр</button>
-                <a class="col btn btn-primary mb-3 btn-sm" th:href="@{/flights}" >Сброс</a>
+                <a class="col btn btn-primary mb-3 btn-sm" style="width: 70px;" th:href="@{/flights}" >Сброс</a>
         </form>
     </div>
 
@@ -47,7 +44,7 @@
             <div class="row align-items-center">
                 <div class="col">
                     <h3>
-                         <!-- ? Пример -->
+                        
                         <a th:text="${flight.flyNumber}" th:href="@{/flights/{id}(id=${flight.id})}">Номер рейса</a>
                     </h3>
                 </div>
@@ -73,9 +70,9 @@
                         <form th:method="DELETE" th:action="@{/flights/{id}(id=${flight.id})}" >
                             <button type="submit" class="btn btn-outline-danger float-end">Удалить</button>                    
                     </form>
-                    <form action="купыть">
+                    <!-- <form action="купить">
                         <button type="submit" class="btn btn-outline-danger float-end">Купить</button>
-                    </form>
+                    </form> -->
                     <h4><a th:href="@{flights/update/{id}(id=${flight.id})}">Редактировать</a></h4>  
                 </div>
             </div>

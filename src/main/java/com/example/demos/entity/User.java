@@ -21,12 +21,7 @@ public class User {
     private String lastname;
     @Column(nullable = false)
     private String password;
-    @Column
-    private int passportNumber;
-    @Column
-    private String address;
-    @Column
-    private int bankcardNumber;
+   
     @Column
     private String email;
     @Column

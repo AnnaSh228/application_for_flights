@@ -48,11 +48,13 @@ public class FlightService {
         newFlight.setFlyNumber(dto.flyNumber);
 
         newFlight.setTicketPrice(dto.ticketPrice);
-        newFlight.setFlightDuration(dto.flightDuration);
+  
         newFlight.setDistanceInKm(dto.distanceInKm);
         newFlight.setDepartureAirport(dto.departureAirport);
         newFlight.setArrivalAirport(dto.arrivalAirport);
-        newFlight.setCountry(dto.country);
+        newFlight.setCountryDeparture(dto.countryArrival);
+        newFlight.setCountryArrival(dto.countryArrival);
+        
 
         String arrivalDate = dto.arrivalDate.replace("T", " ");
         LocalDateTime dateTime = LocalDateTime.parse(arrivalDate + ":00",
@@ -99,12 +101,12 @@ public class FlightService {
     }
 
     public List<Flight> getFilterList(FilterDto dto) {
-        List<Flight> flights = flightRepository.findAllByArrivalAirportAndDepartureAirport(dto.getDepartureAirport(), dto.getDepartureAirport());
+        List<Flight> flights = flightRepository.findAllByCountryArrivalAndCountryDeparture(dto.getCountryArrival(), dto.getCountryDeparture());
         List<Flight> flightsRes = new ArrayList<>();
 
         for(var i : flights){
-            int left = i.getDepartureDate().compareTo(dto.getDepartureDate());
-            int right = i.getArrivalDate().compareTo(dto.getArrivalDate());
+            int left = i.getDepartureDate().compareTo(dto.getDepartureDate().atStartOfDay());
+            int right = i.getArrivalDate().compareTo(dto.getDepartureDate().atStartOfDay().plusDays(1));
 
             if(left >= 0 && right <= 0){
                 flightsRes.add(i);
@@ -114,13 +116,13 @@ public class FlightService {
         return flightsRes;
     }
 
-    // ! Хочу питсу
-    public void updateFlight(FlightUpdateDto dto        ) {
-        Optional<Flight> ingibonga =  flightRepository.findById(dto.id);
-        if(ingibonga.isEmpty()){
-            LOG.info("Извини братан, не нашел {}", dto.id);
+    
+    public void updateFlight(FlightUpdateDto dto) {
+        Optional<Flight> in =  flightRepository.findById(dto.id);
+        if(in.isEmpty()){
+            LOG.info("не найдено {}", dto.id);
         }
-        Flight flight = ingibonga.get();
+        Flight flight = in.get();
       
         String arrivalDate = dto.arrivalDate.replace("T", " ");
         LocalDateTime dateTime = LocalDateTime.parse(arrivalDate + ":00",

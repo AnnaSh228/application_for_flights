@@ -17,11 +17,7 @@ public class UserDto {
     
     public String password;
     
-    public String passportNumber;
-   
-    public String address;
-   
-    public String bankcardNumber;
+
     
     public String email;
     

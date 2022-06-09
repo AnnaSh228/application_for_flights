@@ -23,8 +23,12 @@
             <input type="text" title="flyNumber" placeholder="flyNumber" th:field="*{flyNumber}"></input>
         </div>
         <div class="order-form_form_input">
-            <h4>Введите страну прибытия рейса</h4>
-            <input type="text" title="country" placeholder="country" th:field="*{country}"></input>
+            <h4>Куда</h4>
+            <input type="text" title="countryArrival" placeholder="countryArrival" th:field="*{countryArrival}"></input>
+        </div>
+        <div class="order-form_form_input">
+            <h4>Откуда</h4>
+            <input type="text" title="countryDeparture" placeholder="countryDeparture" th:field="*{countryDeparture}"></input>
         </div>
         <div class="order-form_form_input">
             <h4>Введите дату прибытия в страну</h4>
@@ -39,10 +43,7 @@
             <h4>Введите стоимость билета</h4>
             <input type="number" title="ticketPrice" placeholder="ticketPrice" th:field="*{ticketPrice}"></input>
         </div>
-        <div class="order-form_form_input">
-            <h4>Введите время полета в минутах</h4>
-            <input type="number" title="flightDuration" placeholder="flightDuration" th:field="*{flightDuration}"></input>
-        </div>
+        
         <div class="order-form_form_input">
             <h4>Введите расстояние полета в километрах</h4>
             <input type="number" title="distanceInKm" placeholder="distanceInKm" th:field="*{distanceInKm}"></input>
